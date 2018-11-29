@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -26,7 +27,8 @@ namespace HackTheFuture.PL.Controllers
                     var readTask = result.Content.ReadAsStreamAsync();
                     readTask.Wait();
 
-                    resultString = readTask.Result.ToString();
+                    StreamReader reader = new StreamReader(readTask.Result);
+                    resultString = reader.ReadToEnd();
                 }
                 else //web api sent error response 
                 {
