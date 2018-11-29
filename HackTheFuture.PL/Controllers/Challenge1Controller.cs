@@ -50,7 +50,6 @@ namespace HackTheFuture.PL.Controllers
         [HttpPost]
         public ActionResult PostChallenge(string challengeid)
         {
-            string responseMessage = "";
             //string json = "{\"challengeId\": \"" + challengeid + "\",\"values\": [{\"name\": \"name\",\"data\": \"Dackotton\"},{\"name\": \"secret\",\"data\": \"Dackotton\"}]}";
             Uri uri = new Uri("http://htf2018.azurewebsites.net/");
 

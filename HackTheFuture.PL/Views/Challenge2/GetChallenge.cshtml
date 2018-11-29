@@ -1,0 +1,30 @@
+﻿@model  HackTheFuture.PL.Models.Challenge
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <p>
+                id: @Html.DisplayFor(model => model.Id)
+            </p>
+            <p>
+                identifier: @Html.DisplayFor(model => model.Identifier)
+            </p>
+            <p>
+                title: @Html.DisplayFor(model => model.Title)
+            </p>
+            <p>
+                <!--description: @Html.DisplayFor(model => model.Description)-->
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-center">
+            <form action="@Url.Action("PostChallenge","Challenge1")" method="post">
+                <input type="hidden" name="challengeid" id="challengeid" value="@Model.Id" />
+                <input type="submit" value="Post" />
+            </form>
+        </div>
+    </div>
+</div>
