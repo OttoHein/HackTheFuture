@@ -45,9 +45,10 @@ namespace HackTheFuture.PL.Controllers
             return View(challenge);
         }
 
-        public ActionResult PostChallenge()
+        [HttpPost]
+        public ActionResult PostChallenge(string challengeid)
         {
-            string json = "{'challengeId': '93eaca9d-1065-4edd-a824-75daf2b0b732','values': [{'name': 'name','data': 'Dackotton'},{'name': 'secret','data': 'Dackotton'}]}";
+            string json = "{\"challengeId\": \"" + challengeid + "\",\"values\": [{\"name\": \"name\",\"data\": \"Dackotton\"},{\"name\": \"secret\",\"data\": \"Dackotton\"}]}";
 
             using (var client = new HttpClient())
             {
@@ -59,6 +60,12 @@ namespace HackTheFuture.PL.Controllers
 
                 var result = postTask.Result;
 
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.test = json;
                 ViewBag.responseMessage = result;
 
             }
