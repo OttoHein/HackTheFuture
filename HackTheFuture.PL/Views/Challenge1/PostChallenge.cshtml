@@ -46,6 +46,10 @@
             <p>
                 @Html.DisplayFor(model => model.Overview.challenge03.status)
             </p>
+            <form action="@Url.Action("GetChallenge","Challenge3")" method="post">
+                <input type="hidden" name="url" id="url" value="@Model.Overview.challenge03.status" />
+                <input type="submit" value="Get challenge 3" />
+            </form>
             <h3>
                 Challenge 4:
             </h3>
@@ -55,6 +59,10 @@
             <p>
                 @Html.DisplayFor(model => model.Overview.challenge04.status)
             </p>
+            <form action="@Url.Action("GetChallenge","Challenge4")" method="post">
+                <input type="hidden" name="url" id="url" value="@Model.Overview.challenge04.status" />
+                <input type="submit" value="Get challenge 4" />
+            </form>
             <h3>
                 Challenge 5:
             </h3>

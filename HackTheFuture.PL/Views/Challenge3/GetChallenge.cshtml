@@ -1,0 +1,13 @@
+﻿@model  HackTheFuture.PL.Models.Challenge
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            @Html.DisplayFor(model => model.Description)
+        </div>
+        <p>
+            @Html.DisplayFor(model => model.Question.InputValues)
+        </p>
+    </div>
+</div>
+
