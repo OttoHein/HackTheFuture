@@ -17,15 +17,16 @@ namespace HackTheFuture.PL.Controllers
         public ActionResult GetChallenge(string url)
         {
             Uri uri = new Uri("http://htf2018.azurewebsites.net/");
+            url = "Challenges/593bc0a2e0dfdc53b239bc2a96ab0fd5";
 
             var client = new RestClient(uri);
 
             var request = new RestRequest(url, Method.GET);
-            request.AddHeader("htf-identification", "Hackotton");
+            request.AddHeader("htf-identification", "M2NkMzQyZTQtMDI2MC00OWM0LTgxNzctYjM1Nzc1MzQxY2Ji");
 
             var response = client.Execute(request);
 
-            ChallengeResponse challenge = JsonConvert.DeserializeObject<ChallengeResponse>(response.Content);
+            Challenge challenge = JsonConvert.DeserializeObject<Challenge>(response.Content);
 
             return View(challenge);
         }
