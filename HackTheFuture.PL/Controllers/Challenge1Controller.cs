@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HackTheFuture.PL.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -38,9 +40,11 @@ namespace HackTheFuture.PL.Controllers
                 }
             }
 
-            ViewBag.resultString = resultString;
+            Challenge challenge = JsonConvert.DeserializeObject<Challenge>(resultString);
 
-            return View();
+            return View(challenge);
         }
+
+
     }
 }

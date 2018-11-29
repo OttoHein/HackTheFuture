@@ -1,8 +1,22 @@
-﻿<div class="row">
+﻿@model  HackTheFuture.PL.Models.Challenge
+
+<div class="row">
     <div class="col-md-12">
         <div class="well">
             <p>
-                @ViewBag.resultString
+                id: @Html.DisplayFor(model => model.Id)
+            </p>
+            <p>
+                identifier: @Html.DisplayFor(model => model.Identifier)
+            </p>
+            <p>
+                title: @Html.DisplayFor(model => model.Title)
+            </p>
+            <p>
+                description: @Html.DisplayFor(model => model.Description)
+            </p>
+            <p>
+                question: @Html.DisplayFor(model => model.Question.InputValues)
             </p>
         </div>
     </div>
