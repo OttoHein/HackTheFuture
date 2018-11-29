@@ -45,6 +45,25 @@ namespace HackTheFuture.PL.Controllers
             return View(challenge);
         }
 
+        public ActionResult PostChallenge()
+        {
+            string json = "{'challengeId': '93eaca9d-1065-4edd-a824-75daf2b0b732','values': [{'name': 'name','data': 'Dackotton'},{'name': 'secret','data': 'Dackotton'}]}";
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://htf2018.azurewebsites.net/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync("Challenges", json);
+                postTask.Wait();
+
+                var result = postTask.Result;
+
+                ViewBag.responseMessage = result;
+
+            }
+            return View();
+        }
 
     }
 }
