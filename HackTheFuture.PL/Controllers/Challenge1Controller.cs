@@ -1,9 +1,11 @@
 ﻿using HackTheFuture.PL.Models;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
@@ -48,28 +50,24 @@ namespace HackTheFuture.PL.Controllers
         [HttpPost]
         public ActionResult PostChallenge(string challengeid)
         {
-            string json = "{\"challengeId\": \"" + challengeid + "\",\"values\": [{\"name\": \"name\",\"data\": \"Dackotton\"},{\"name\": \"secret\",\"data\": \"Dackotton\"}]}";
+            string responseMessage = "";
+            //string json = "{\"challengeId\": \"" + challengeid + "\",\"values\": [{\"name\": \"name\",\"data\": \"Dackotton\"},{\"name\": \"secret\",\"data\": \"Dackotton\"}]}";
+            Uri uri = new Uri("http://htf2018.azurewebsites.net/");
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://htf2018.azurewebsites.net/");
+            var client = new RestClient(uri);
 
-                //HTTP POST
-                var postTask = client.PostAsJsonAsync("Challenges", json);
-                postTask.Wait();
+            var request = new RestRequest("/Challenges/", Method.POST);
 
-                var result = postTask.Result;
+            //request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
 
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
+            request.AddJsonBody(new Answer { ChallengeId = challengeid, Values = new List<Value> { new Value { Name = "name", Data = "Dackotton" }, new Value { Name = "secret", Data = "Dackotton" } } });
 
-                ViewBag.test = json;
-                ViewBag.responseMessage = result;
+            var response = client.Execute(request);
 
-            }
-            return View();
+            ChallengeResponse challenge = JsonConvert.DeserializeObject<ChallengeResponse>(response.Content);
+
+            return View(challenge);
         }
 
     }

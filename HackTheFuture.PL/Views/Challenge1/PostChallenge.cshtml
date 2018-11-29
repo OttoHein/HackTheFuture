@@ -1,11 +1,34 @@
-﻿<div class="row">
+﻿@model  HackTheFuture.PL.Models.ChallengeResponse
+
+<div class="row">
     <div class="col-md-12">
         <div class="well">
             <p>
                 @ViewBag.test
             </p>
             <p>
-                @ViewBag.responseMessage
+                id: @Html.DisplayFor(model => model.Identifier)
+            </p>
+            <p>
+                identifier: @Html.DisplayFor(model => model.Status)
+            </p>
+            <h3>
+                Challenge 1:
+            </h3>
+            <p>
+                @Html.DisplayFor(model => model.Overview.challenge01.entry)
+            </p>
+            <p>
+                @Html.DisplayFor(model => model.Overview.challenge01.status)
+            </p>
+            <h3>
+                Challenge 2:
+            </h3>
+            <p>
+                @Html.DisplayFor(model => model.Overview.challenge02.entry)
+            </p>
+            <p>
+                @Html.DisplayFor(model => model.Overview.challenge02.status)
             </p>
         </div>
     </div>
